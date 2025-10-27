@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-EN-Compatible" content="IE=edge" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta
+      name="format-detection"
+      content="telephone=no,address=no,email=no,date=no,url=no"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <title>EMAIL TEMPLATE</title>
+    <!--
+    БАЗОВИЙ ШАБЛОН HTML EMAIL 600px
+    скелет з корисними патернами
+    Поради:
+      - Тримай HTML < 102KB, інакше Gmail може обрізати.
+      - Картинки ретина (2x), з width/height атрибутами і style="height:auto".
+      - Максимальна ширина контенту 600px. Всі layout тільки на <table>.
+      - Більшість стилів інлайном; спільні — класами нижче (підтримуються більшістю клієнтів).
+  -->
+    <style type="text/css">
+      /* RESET */
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
+      * {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt !important;
+        mso-table-rspace: 0pt !important;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        outline: none;
+        text-decoration: none;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+      }
+      /* Outlook */
+      .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+      /* iOS blue links */
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+      /* CONTAINER */
+      .email-container {
+        width: 100% !important;
+        max-width: 600px !important;
+      }
+      /* UTILITIES */
+      .sm-hidden {
+        display: block;
+      }
+      .sm-block {
+        display: inline-block;
+      }
+      .sm-w-100 {
+        width: auto;
+      }
+      .sm-p-0 {
+        padding: inherit;
+      }
+      .sm-text-center {
+        text-align: left;
+      }
+      .light-only {
+        display: block;
+      }
+      .dark-only {
+        display: none;
+      }
+      /* DARK MODE */
+      @media (prefers-color-scheme: dark) {
+        .bg {
+          background-color: #0b0b0b !important;
+        }
+        .surface {
+          background-color: #141414 !important;
+        }
+        .text {
+          color: #ffffff !important;
+        }
+        .muted {
+          color: #b5b5b5 !important;
+        }
+        .light-only {
+          display: none !important;
+        }
+        .dark-only {
+          display: block !important;
+        }
+        .btn-primary {
+          background-color: #7b5cff !important;
+        }
+      }
+      /* Outlook.com dark mode */
+      [data-ogsc] .bg {
+        background-color: #0b0b0b !important;
+      }
+      [data-ogsc] .surface {
+        background-color: #141414 !important;
+      }
+      [data-ogsc] .text {
+        color: #ffffff !important;
+      }
+      [data-ogsc] .muted {
+        color: #b5b5b5 !important;
+      }
+      [data-ogsc] .light-only {
+        display: none !important;
+      }
+      [data-ogsc] .dark-only {
+        display: block !important;
+      }
+
+      /* RESPONSIVE */
+      @media screen and (max-width: 600px) {
+        .sm-hidden {
+          display: none !important;
+          mso-hide: all !important;
+        }
+        .sm-block {
+          display: block !important;
+          width: 100% !important;
+        }
+        .sm-w-100 {
+          width: 100% !important;
+        }
+        .sm-p-0 {
+          padding: 0 !important;
+        }
+        .sm-text-center {
+          text-align: center !important;
+        }
+        .sm-px-16 {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+      }
+    </style>
+
+    <!-- ОПЦІЙНО: веб-шрифти (працюють у Apple Mail / iOS Mail / деяких клієнтах). Gmail/Outlook — fallback. -->
+    <!-- Приклад із власного хостингу (woff2/woff). БЕЗ зовнішніх <link> -->
+    <!--
+  <style type="text/css">
+    @font-face {
+      font-family: 'Inter';
+      src: url('https://cdn.example.com/fonts/inter-regular.woff2') format('woff2'),
+           url('https://cdn.example.com/fonts/inter-regular.woff') format('woff');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+  </style>
+  --></head>
+  <body
+    id="body"
+    class="bg"
+    style="margin: 0; padding: 0; background-color: #f6f6f9"
+  >
+    <!-- Preview / Preheader (прихований) -->
+    <div
+      style="
+        display: none;
+        font-size: 1px;
+        line-height: 1px;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+      "
+    >
+      Короткий прев’ю текст для інбоксу. Замінити під розсилку.
+    </div>
+
+    <!-- Фікса для Gmail iOS правого відступу -->
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all">
+      &nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;
+    </div>
+
+    <table
+      role="presentation"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      width="100%"
+      style="width: 100%"
+    >
+      <tr>
+        <td align="center" style="padding: 0; margin: 0">
+          <!-- WRAPPER -->
+          <table
+            role="presentation"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            width="600"
+            class="email-container surface"
+            style="width: 100%; max-width: 600px; background-color: #ffffff"
+          >
+            <!-- HEADER -->
+            <tr>
+              <td style="padding: 20px 24px" class="sm-px-16">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td align="left">
+                      <!-- Світле лого -->
+                      <img
+                        src="https://s6.imgcdn.dev/YytUqq.jpg"
+                        width="120"
+                        height="32"
+                        alt="Brand"
+                        class="light-only"
+                        style="display: block; height: auto"
+                      />
+                      <!-- Темне лого -->
+                      <img
+                        src="https://s6.imgcdn.dev/YytUqq.jpg"
+                        width="120"
+                        height="32"
+                        alt="Brand"
+                        class="dark-only"
+                        style="display: none; height: auto"
+                      />
+                    </td>
+                    <td
+                      align="right"
+                      class="sm-hidden"
+                      style="
+                        font: 14px/1.4 system-ui, -apple-system, Segoe UI,
+                          Roboto, Arial, sans-serif;
+                        color: #6b7280;
+                      "
+                    >
+                      Версія для веб&nbsp;→
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- HERO -->
+            <tr>
+              <td style="padding: 0">
+                <img
+                  src="https://s6.imgcdn.dev/YytUqq.jpg"
+                  style="width: 100%; height: auto"
+                  width="600"
+                  height="240"
+                  alt="Hero"
+                />
+              </td>
+            </tr>
+
+            <!-- TITLE + TEXT -->
+            <tr>
+              <td style="padding: 24px" class="sm-px-16">
+                <h1
+                  class="text"
+                  style="
+                    margin: 0 0 8px 0;
+                    font: 700 24px/1.25 system-ui, -apple-system, Segoe UI,
+                      Roboto, Arial, sans-serif;
+                    color: #111827;
+                  "
+                >
+                  Заголовок листа
+                </h1>
+                <p
+                  class="muted"
+                  style="
+                    margin: 0;
+                    font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto,
+                      Arial, sans-serif;
+                    color: #374151;
+                  "
+                >
+                  Короткий опис, який пояснює основну ідею листа. Пиши до 2–3
+                  рядків, щоб не розтягувати.
+                </p>
+              </td>
+            </tr>
+
+            <!-- BUTTON (Bulletproof з VML для Outlook) -->
+            <tr>
+              <td
+                align="center"
+                style="padding: 8px 24px 24px"
+                class="sm-px-16"
+              >
+                <!--[if mso]>
+                  <v:roundrect
+                    xmlns:v="urn:schemas-microsoft-com:vml"
+                    href="https://example.com"
+                    style="height: 44px; v-text-anchor: middle; width: 240px"
+                    arcsize="10%"
+                    strokecolor="#7b5cff"
+                    fillcolor="#7b5cff"
+                  >
+                    <w:anchorlock />
+                    <center
+                      style="
+                        color: #ffffff;
+                        font-family: Segoe UI, Arial, sans-serif;
+                        font-size: 16px;
+                      "
+                    >
+                      Перейти
+                    </center>
+                  </v:roundrect>
+                <![endif]-->
+                <!--[if !mso]><!-- -->
+                <a
+                  href="https://example.com"
+                  style="
+                    background: #7b5cff;
+                    border-radius: 6px;
+                    display: inline-block;
+                    padding: 12px 24px;
+                    font: 600 16px/1 system-ui, -apple-system, Segoe UI, Roboto,
+                      Arial, sans-serif;
+                    color: #ffffff;
+                  "
+                  class="btn-primary"
+                  >Перейти</a
+                >
+                <!--<![endif]-->
+              </td>
+            </tr>
+
+            <!-- TWO COLUMNS (stack на мобільному) -->
+            <tr>
+              <td style="padding: 0 24px 24px" class="sm-px-16">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td
+                      class="sm-block"
+                      valign="top"
+                      width="50%"
+                      style="padding-right: 12px"
+                    >
+                      <img
+                        src="https://s6.imgcdn.dev/YytUqq.jpg"
+                        width="264"
+                        height="176"
+                        alt=""
+                        style="width: 100%; height: auto"
+                      />
+                      <p
+                        style="
+                          margin: 8px 0 0;
+                          font: 14px/1.5 system-ui, -apple-system, Segoe UI,
+                            Roboto, Arial, sans-serif;
+                          color: #374151;
+                        "
+                      >
+                        Опис першого блоку. Короткий текст.
+                      </p>
+                    </td>
+                    <td
+                      class="sm-block"
+                      valign="top"
+                      width="50%"
+                      style="padding-left: 12px"
+                    >
+                      <img
+                        src="https://s6.imgcdn.dev/YytUqq.jpg"
+                        width="264"
+                        height="176"
+                        alt=""
+                        style="width: 100%; height: auto"
+                      />
+                      <p
+                        style="
+                          margin: 8px 0 0;
+                          font: 14px/1.5 system-ui, -apple-system, Segoe UI,
+                            Roboto, Arial, sans-serif;
+                          color: #374151;
+                        "
+                      >
+                        Опис другого блоку. Короткий текст.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td
+                style="padding: 24px; border-top: 1px solid #e5e7eb"
+                class="sm-px-16"
+              >
+                <p
+                  style="
+                    margin: 0 0 8px;
+                    font: 12px/1.5 system-ui, -apple-system, Segoe UI, Roboto,
+                      Arial, sans-serif;
+                    color: #6b7280;
+                  "
+                >
+                  Ви отримали цей лист, бо підписались на оновлення.
+                </p>
+                <p
+                  style="
+                    margin: 0;
+                    font: 12px/1.5 system-ui, -apple-system, Segoe UI, Roboto,
+                      Arial, sans-serif;
+                    color: #6b7280;
+                  "
+                >
+                  <a
+                    href="*|UNSUB|*"
+                    style="color: #6b7280; text-decoration: underline"
+                    >Відписатись</a
+                  >
+                  ·
+                  <a
+                    href="*|PREFERENCES|*"
+                    style="color: #6b7280; text-decoration: underline"
+                    >Налаштування</a
+                  >
+                  ·
+                  <a
+                    href="https://example.com/privacy"
+                    style="color: #6b7280; text-decoration: underline"
+                    >Політика</a
+                  >
+                </p>
+                <p
+                  style="
+                    margin: 8px 0 0;
+                    font: 12px/1.5 system-ui, -apple-system, Segoe UI, Roboto,
+                      Arial, sans-serif;
+                    color: #9ca3af;
+                  "
+                >
+                  © 2025 Brand Inc., 123 Street, City
+                </p>
+              </td>
+            </tr>
+          </table>
+          <!-- /WRAPPER -->
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
