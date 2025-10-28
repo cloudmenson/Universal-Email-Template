@@ -8,14 +8,13 @@ const paths = {
   dest: "dist/",
 };
 
-// Збирання з @include
 export const buildHtml = () => {
   return gulp
     .src([paths.src])
     .pipe(
       fileInclude({
         prefix: "@@",
-        basepath: "@file", // шукає файли відносно місця виклику
+        basepath: "@file",
       })
     )
     .pipe(
@@ -29,14 +28,14 @@ export const buildHtml = () => {
     .pipe(
       htmlmin({
         collapseWhitespace: true,
+        conservativeCollapse: true,
+        minifyCSS: true,
         removeComments: true,
-        minifyCSS: false,
       })
     )
     .pipe(gulp.dest(paths.dest));
 };
 
-// Вотчер для швидкої роботи
 export const watchFiles = () => {
   gulp.watch(paths.src, buildHtml);
 };
